@@ -1,5 +1,8 @@
 # hospital
 
+##技术框架
+vue + vue-router + axios + scss + elementUI
+
 ## Project setup
 ```
 yarn install
