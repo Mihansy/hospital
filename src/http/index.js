@@ -23,3 +23,13 @@ export const getLeftNav = (url,length) => {  //箭头函数想要接收不定参
 		}
 	})
 }
+
+//首页数据
+export const getHome = (requestUrl, len, modelName) => {
+	return ajax.get(pageName+requestUrl,{
+		params: {
+			length: len, 
+			modelName: modelName,
+		}
+	})
+}
