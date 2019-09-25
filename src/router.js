@@ -31,5 +31,9 @@ export default new Router({
 				}
 			]
     }
-  ]
+  ],
+	scrollBehavior (to, from, savedPosition) {//切换路由的时候滚动到顶部
+		return { x: 0, y: 0 }
+	}
 })
+
