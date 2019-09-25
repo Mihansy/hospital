@@ -3,11 +3,12 @@
 		<div class="leftblock yy-notice">
 			<div class="parent title">
 				<span class="leftfloat">医院公告</span>
-				<a class="rightfloat"  onclick="toList('/listPage/getNoticePage','', '', 15, 1)">更多</a>
+				<router-link class="rightfloat" :to="{name:'list', params: {url:'/listPage/getNoticePage'}}">更多</router-link>
 			</div>
 			<ul class="notice-list layui-icon-loading">
 				<li v-for="(item, index) in noticeList" :key="index">
-					<a href="item.value">{{item.title}}</a>
+					<!-- <a href="item.value">{{item.title}}</a> -->
+					<router-link :to="{name: 'detail', params: {id: item.value}}">{{item.title}}</router-link>
 				</li>
 			</ul>
 		</div>
@@ -16,7 +17,13 @@
 				<span class="leftfloat">科室简介</span>
 			</div>
 			<div class="department-list">
-				<a v-for="(item, index) in departmentList" :key="index">{{item.name}}</a>
+				<!-- <a v-for="(item, index) in departmentList" :key="index">{{item.name}}</a> -->
+				<router-link 
+					v-for="(item, index) in departmentList" 
+					:key="index" 
+					:to="{name: 'detail', params: {id: item.value}}">
+					{{item.name}}
+				</router-link>
 			</div>
 		</div>
 		<div class="leftblock yy-other">

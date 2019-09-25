@@ -2,15 +2,19 @@
 	<div>
 		<div class="rightblock yy-news">
 			<img class="leftfloat newsPic" :src="newsPic">
-			<div class="leftfloat newsText" id="newsText">{{newsDetail}}<a :href="newsLinkId">[查看详情]</a></div>
+			<div class="leftfloat newsText" id="newsText">{{newsDetail}}
+				<router-link :to="{name: 'detail', params: {id: newsLinkId}}">[查看详情]</router-link>
+				<!-- <a :href="newsLinkId">[查看详情]</a> -->
+			</div>
 			<div class="rightfloat newsList">
 				<div class="parent rightblock-title title">
 					<span class="leftfloat">新闻中心</span>
-					<a class="rightfloat" onclick="toList('/listPage/getNewsPage', '','',28, 1)">更多</a>
+					<router-link class="rightfloat" :to="{name:'list', params: {url:'/listPage/getNewsPage'}}">更多</router-link>
 				</div>
 				<ul class="" id="newsList" style="height:236px;">
 					<li v-for="(item, index) in newsList" :key="index">
-						<a :id="item.value">{{item.title}}</a>
+						<!-- <a :id="item.value">{{item.title}}</a> -->
+						<router-link :to="{name: 'detail', params: {id: item.value}}">{{item.title}}</router-link>
 					</li>
 				</ul>
 			</div>
@@ -20,11 +24,16 @@
 			<div class="specialist" style="width: 911px; height: 284px;">
 				<el-carousel height="282px" class="specialist-wrap">
 					<el-carousel-item v-for="(arr, index) in speciaList" :key="index">
-						<a :id="item.value" v-for="item in arr" :key="item.value">
+						<!-- <a :id="item.value" v-for="item in arr" :key="item.value">
 							<img :src="item.picUrl" alt="">
 							<span class="name">{{item.name}}</span>
 							<span class="job">{{item.rank}}</span>
-						</a>
+						</a> -->
+						<router-link v-for="item in arr" :key="item.value" :to="{name: 'detail', params: {id: item.value}}">
+							<img :src="item.picUrl" alt="">
+							<span class="name">{{item.name}}</span>
+							<span class="job">{{item.rank}}</span>
+						</router-link>
 					</el-carousel-item>
 				</el-carousel>
 			</div>
@@ -32,46 +41,79 @@
 		<div class="parent rightblock yy-listblock">
 			<div class="parent rightblock-title">
 				<span class="leftfloat">科研教学</span>
-				<a class="leftfloat" style="margin-left: 330px;" onclick="toList('/listPage/getModelInfoPage', '','SRT',15, 1)">更多</a><span
-				 class="leftfloat">科普知识</span><a class="rightfloat" style="margin-left: 330px;" onclick="toList('/listPage/getModelInfoPage', '','HE',15, 1)">更多</a></div>
+				<router-link class="leftfloat" style="margin-left: 330px;" :to="{name:'list', params: {url:'/listPage/getModelInfoPage',modelName: 'SRT'}}">更多</router-link>
+				<span class="leftfloat">科普知识</span>
+				<router-link class="rightfloat" style="margin-left: 330px;" :to="{name:'list', params: {url:'/listPage/getModelInfoPage',modelName: 'HE'}}">更多</router-link>
+
+			</div>
 			<ul class="leftfloat rightblock-list-left" id="research">
-				<li v-for="(item, index) in columnSRT" :key="index"><a :id="item.value">{{item.title}}</a></li>
+				<li v-for="(item, index) in columnSRT" :key="index">
+					<!-- <a :id="item.value">{{item.title}}</a> -->
+					<router-link :to="{name: 'detail', params: {id: item.value}}">{{item.title}}</router-link>
+				</li>
 			</ul>
 			<ul class="rightfloat rightblock-list-right" id="health">
-				<li v-for="(item, index) in columnHE" :key="index"><a :id="item.value">{{item.title}}</a></li>
+				<li v-for="(item, index) in columnHE" :key="index">
+					<!-- <a :id="item.value">{{item.title}}</a> -->
+					<router-link :to="{name: 'detail', params: {id: item.value}}">{{item.title}}</router-link>
+				</li>
 			</ul>
 		</div>
 		<div class="parent rightblock yy-listblock">
-			<div class="parent rightblock-title"><span class="leftfloat">护理园地</span><a class="leftfloat" style="margin-left: 330px;"
-				 onclick="toList('/listPage/getModelInfoPage', '','NG',15, 1)">更多</a><span class="leftfloat">党建园地</span><a class="rightfloat"
-				 style="margin-left: 330px;" onclick="toList('/listPage/getModelInfoPage', '','PBG',15, 1)">更多</a></div>
+			<div class="parent rightblock-title"><span class="leftfloat">护理园地</span>
+				<router-link class="leftfloat" style="margin-left: 330px;" :to="{name:'list', params: {url:'/listPage/getModelInfoPage',modelName: 'NG'}}">更多</router-link>
+				<span class="leftfloat">党建园地</span>
+				<router-link class="rightfloat" style="margin-left: 330px;" :to="{name:'list', params: {url:'/listPage/getModelInfoPage',modelName: 'PBG'}}">更多</router-link>
+			</div>
 			<ul class="leftfloat rightblock-list-left" id="tcm">
-				<li v-for="(item, index) in columnNG" :key="index"><a :id="item.value">{{item.title}}</a></li>
+				<li v-for="(item, index) in columnNG" :key="index">
+					<!-- <a :id="item.value">{{item.title}}</a> -->
+					<router-link :to="{name: 'detail', params: {id: item.value}}">{{item.title}}</router-link>
+				</li>
 			</ul>
 			<ul class="rightfloat rightblock-list-right" id="nurse">
-				<li v-for="(item, index) in columnPBG" :key="index"><a :id="item.value">{{item.title}}</a></li>
+				<li v-for="(item, index) in columnPBG" :key="index">
+					<!-- <a :id="item.value">{{item.title}}</a> -->
+					<router-link :to="{name: 'detail', params: {id: item.value}}">{{item.title}}</router-link>
+				</li>
 			</ul>
 		</div>
 		<div class="parent rightblock yy-listblock">
-			<div class="parent rightblock-title"><span class="leftfloat">医保政策</span><a class="leftfloat" style="margin-left: 330px;"
-				 onclick="toList('/listPage/getModelInfoPage', '','MIP',15, 1)">更多</a><span class="leftfloat">药事管理</span><a class="rightfloat"
-				 style="margin-left: 330px;" onclick="toList('/listPage/getModelInfoPage', '','PA',15, 1)">更多</a></div>
+			<div class="parent rightblock-title"><span class="leftfloat">医保政策</span>
+				<router-link class="leftfloat" style="margin-left: 330px;" :to="{name:'list', params: {url:'/listPage/getModelInfoPage',modelName: 'MIP'}}">更多</router-link>
+				<span class="leftfloat">药事管理</span>
+				<router-link class="rightfloat" style="margin-left: 330px;" :to="{name:'list', params: {url:'/listPage/getModelInfoPage',modelName: 'PA'}}">更多</router-link>
+			</div>
 			<ul class="leftfloat rightblock-list-left" id="partyBuild">
-				<li v-for="(item, index) in columnMIP" :key="index"><a :id="item.value">{{item.title}}</a></li>
+				<li v-for="(item, index) in columnMIP" :key="index">
+					<!-- <a :id="item.value">{{item.title}}</a> -->
+					<router-link :to="{name: 'detail', params: {id: item.value}}">{{item.title}}</router-link>
+				</li>
 			</ul>
 			<ul class="rightfloat rightblock-list-right" id="medicalInsurance">
-				<li v-for="(item, index) in columnPA" :key="index"><a :id="item.value">{{item.title}}</a></li>
+				<li v-for="(item, index) in columnPA" :key="index">
+					<!-- <a :id="item.value">{{item.title}}</a> -->
+					<router-link :to="{name: 'detail', params: {id: item.value}}">{{item.title}}</router-link>
+				</li>
 			</ul>
 		</div>
 		<div class="parent rightblock yy-listblock">
-			<div class="parent rightblock-title"><span class="leftfloat">政策法规</span><a class="leftfloat" style="margin-left: 330px;"
-				 onclick="toList('/listPage/getModelInfoPage', '','PR',15, 1)">更多</a><span class="leftfloat">对口帮扶</span><a class="rightfloat"
-				 style="margin-left: 330px;" onclick="toList('/listPage/getModelInfoPage', '','KCM',15, 1)">更多</a></div>
+			<div class="parent rightblock-title"><span class="leftfloat">政策法规</span>
+				<router-link class="leftfloat" style="margin-left: 330px;" :to="{name:'list', params: {url:'/listPage/getModelInfoPage',modelName: 'PR'}}">更多</router-link>
+				<span class="leftfloat">对口帮扶</span>
+				<router-link class="rightfloat" style="margin-left: 330px;" :to="{name:'list', params: {url:'/listPage/getModelInfoPage',modelName: 'KCM'}}">更多</router-link>
+			</div>
 			<ul class="leftfloat rightblock-list-left" id="pharmaceutical">
-				<li v-for="(item, index) in columnPR" :key="index"><a :id="item.value">{{item.title}}</a></li>
+				<li v-for="(item, index) in columnPR" :key="index">
+					<!-- <a :id="item.value">{{item.title}}</a> -->
+					<router-link :to="{name: 'detail', params: {id: item.value}}">{{item.title}}</router-link>
+				</li>
 			</ul>
 			<ul class="rightfloat rightblock-list-right" id="policy">
-				<li v-for="(item, index) in columnKCM" :key="index"><a :id="item.value">{{item.title}}</a></li>
+				<li v-for="(item, index) in columnKCM" :key="index">
+					<!-- <a :id="item.value">{{item.title}}</a> -->
+					<router-link :to="{name: 'detail', params: {id: item.value}}">{{item.title}}</router-link>
+				</li>
 			</ul>
 		</div>
 		<div class="rightblock yy-other-nav">
@@ -92,7 +134,7 @@
 			return {
 				newsPic: '',
 				newsDetail: '',
-				newsLinkId: '',
+				newsLinkId: '1',
 				newsList: [],
 				columnSRT: [],
 				columnHE: [],
@@ -178,9 +220,8 @@
 				}
 			},
 			showExpertDescList(data) {
-				this.specialistLen = Math.ceil(data.length/5)
+				this.specialistLen = Math.ceil(data.length / 5)
 				this.speciaList = this.chunk(data, 5) //按照一定长度将数组分割，得到新的数组
-				console.log(this.speciaList)
 			},
 			chunk(array, size) {
 				//获取数组的长度，如果你传入的不是数组，那么获取到的就是undefined
@@ -192,7 +233,7 @@
 				//核心部分
 				var index = 0; //用来表示切割元素的范围start
 				var resIndex = 0; //用来递增表示输出数组的下标 
-			
+
 				//根据length和size算出输出数组的长度，并且创建它。
 				var result = new Array(Math.ceil(length / size));
 				//进行循环
@@ -226,17 +267,20 @@
 		width: 948px;
 		margin-bottom: 20px;
 		border: 1px solid #dfdfdf;
+
 		.rightblock-title {
 			height: 46px;
 			line-height: 46px;
 			background-color: #f7f7f7;
 			border-bottom: 1px solid #dfdfdf;
+
 			span {
 				color: #D00E05;
 				font-size: 18px;
 				font-weight: bold;
 				margin-left: 22px;
 			}
+
 			a {
 				color: #09f;
 				margin-right: 16px;
@@ -244,8 +288,10 @@
 			}
 		}
 	}
+
 	.yy-news {
 		height: 318px;
+
 		.newsPic {
 			display: block;
 			width: 320px;
@@ -253,6 +299,7 @@
 			margin-top: 18px;
 			margin-left: 22px;
 		}
+
 		.newsText {
 			width: 280px;
 			height: 288px;
@@ -260,29 +307,36 @@
 			margin-top: 13px;
 			margin-left: 22px;
 			overflow: hidden;
+
 			a {
 				color: #09f;
 				cursor: pointer;
 			}
 		}
+
 		.newsList {
 			width: 288px;
 			height: 318px;
 			background: url(../assets/img/homeIcons.png) no-repeat;
 			background-position: -307px -508px;
+
 			.title {
 				border-bottom: 0;
 				background: url(../assets/img/homeIcons.png) no-repeat;
 				background-position: -1209px -862px;
+
 				a {
 					color: #09f;
 					margin-right: 20px;
 				}
 			}
+
 			ul {
 				margin: 16px 8px 0 22px;
+
 				li {
 					line-height: 40px;
+
 					a {
 						display: block;
 						width: 98%;
@@ -296,8 +350,10 @@
 			}
 		}
 	}
+
 	.yy-specialist {
 		height: 370px;
+
 		.specialist {
 			position: relative;
 			width: 911px;
@@ -305,10 +361,12 @@
 			margin: 29px auto;
 			background: transparent url(../assets/img/homeIcons.png) no-repeat;
 			background-position: -641px -506px;
+
 			.specialist-wrap {
 				div {
 					padding-top: 20px;
 					height: 220px;
+
 					a {
 						float: left;
 						display: block;
@@ -317,6 +375,7 @@
 						margin-right: 1%;
 						text-align: center;
 						cursor: pointer;
+
 						img {
 							display: block;
 							width: 152px;
@@ -324,11 +383,13 @@
 							margin-left: auto;
 							margin-right: auto;
 						}
+
 						.name {
 							display: block;
 							font-size: 18px;
 							margin-top: 12px;
 						}
+
 						.job {
 							display: block;
 							height: 22px;
@@ -336,14 +397,17 @@
 						}
 					}
 				}
+
 				ul.el-carousel__indicators--horizontal {
 					position: relative;
 					bottom: 32px;
 					left: 50%;
 					display: flex;
 					justify-content: center;
+
 					li.el-carousel__indicator--horizontal {
 						padding: 8px 4px;
+
 						button.el-carousel__button {
 							width: 8px;
 							height: 8px;
@@ -355,23 +419,29 @@
 			}
 		}
 	}
+
 	.yy-listblock {
 		height: 372px;
+
 		.rightblock-list-left {
 			width: 454px;
 			padding-left: 20px;
 		}
+
 		.rightblock-list-right {
 			width: 453px;
 			padding-left: 20px;
 			border-left: 1px dashed #dfdfdf;
 		}
+
 		ul {
 			height: 295px;
 			padding-top: 16px;
 			padding-bottom: 14px;
+
 			li {
 				line-height: 42px;
+
 				a {
 					display: block;
 					width: 98%;
@@ -384,17 +454,21 @@
 			}
 		}
 	}
+
 	.yy-other-nav {
 		height: 256px;
+
 		.other-nav-list {
 			padding-top: 26px;
 			padding-left: 22px;
+
 			a {
 				display: inline-block;
 				width: 150px;
 				height: 42px;
 				margin-right: 76px;
 				margin-bottom: 20px;
+
 				img {
 					width: 100%;
 					height: 100%;
@@ -408,6 +482,7 @@
 	.yy-notice>ul {
 		position: relative;
 	}
+
 	.yy-listblock>ul li:hover a,
 	.newsList>ul li:hover a,
 	.notice-list li:hover a,

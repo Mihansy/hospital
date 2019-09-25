@@ -19,14 +19,15 @@ export default new Router({
 					component: Home
 				},
 				{
-					path: '/list/:id',
+					path: '/list/:url/:modelName',
+					//path: '/list',
 					name: 'list',
 					component: () => import(/* webpackChunkName: "list" */ './views/List.vue')
 				},
 				{
-					path: '/details/:id',
-					name: 'details',
-					component: () => import(/* webpackChunkName: "list" */ './views/Details.vue')
+					path: '/detail/:id',
+					name: 'detail',
+					component: () => import(/* webpackChunkName: "list" */ './views/Detail.vue')
 				}
 			]
     }

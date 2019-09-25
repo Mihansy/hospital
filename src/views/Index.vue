@@ -3,7 +3,9 @@
     <Left></Left>
 		<div class="rightfloat wrap-right">
 			<div id="rightContent">
-				<router-view/>
+				<!--解决路由参数变化，页面不更新的方法：增加一个不同:key值，这样vue就会识别这是不同的router-view了 -->
+				<!-- <router-view :key="random"/> -->
+				<router-view/> 
 			</div>
 		</div>
   </div>
@@ -16,7 +18,12 @@ export default {
   name: 'index',
   components: {
     Left
-  }
+  },
+	computed: {
+		random() {
+			return this.$route.path + Math.random()
+		}
+	}
 }
 </script>
 

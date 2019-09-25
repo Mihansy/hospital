@@ -10,7 +10,7 @@
 					<!-- <router-link :to="{name: item.pageType, params:{id: item.value}}">{{item.name}}</router-link> -->
 					<dl class="nav-item-child" v-if="item.childrenList">
 						<dd v-for="child in item.childrenList" :key="child.value">
-							<a @click="toPage(child.pageType, child.value)">{{child.name}}</a>
+							<a @click="toPage(index, child.pageType, child.value)">{{child.name}}</a>
 						</dd>
 					</dl>
 				</li>
@@ -38,12 +38,64 @@
 					console.log(err)
 				})
 			},
-			toPage(index, pageType, id) {
+			toPage(index, pageType, pageId) {
 				this.currentA = index
+
 				if(pageType !== 'listbtn'){
-					this.$router.push({
-						path: '/'+pageType+'?id='+id
-					})
+					if(pageType == 'home'){ //首页
+						this.$router.push({
+							path: '/'
+						})
+						
+					}else if(pageType == 'list'){  //列表页
+						if(pageId == 'news'){
+							this.$router.push({
+								name: 'list',
+								params: {
+									url: '/listPage/getNewsPage',
+									modelName: pageId
+								}
+							})
+							
+						}else if(pageId == 'notice') {
+							this.$router.push({
+								name: 'list',
+								params: {
+									url: '/listPage/getNoticePage'
+								}
+							})
+							
+						}else if(pageId == 'export') {
+							this.$router.push({
+								name: 'list',
+								params: {
+									url: '/listPage/getAllDepartmentExpertList'
+								}
+							})
+							
+						}else{
+							this.$router.push({
+								name: 'list',
+								params: {
+									url: '/listPage/getModelInfoPage',
+									modelName: pageId
+								}
+							})
+						}
+						
+					}else if(pageType == 'details'){  //详情页
+						if(pageId == '25803fe6a4064c21b0252c4225bc1161'){
+							pageId = 'bd3964322d3f40d285de655d6a316992';
+						}
+						
+						this.$router.push({
+							name: 'detail',
+							params: {
+								id: pageId
+							}
+						})
+					}
+					
 				}
 			}
 		},

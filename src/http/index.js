@@ -33,3 +33,23 @@ export const getHome = (requestUrl, len, modelName) => {
 		}
 	})
 }
+
+//列表数据
+export const getList = (url, pageSize=15, pageNo=1, modelName='') => {
+	return ajax.get(url,{
+		params: {
+			length: pageSize,
+			pageNo: pageNo,
+			modelName: modelName
+		}
+	})
+}
+
+//详情页
+export const getDetail = (id) => {
+	return ajax.get('/detailsPage/getPage/',{
+		params: {
+			id: id
+		}
+	})
+}
