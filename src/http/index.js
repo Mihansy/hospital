@@ -53,3 +53,27 @@ export const getDetail = (id) => {
 		}
 	})
 }
+
+//邮箱页
+export const getEmail = (obj) => {
+	return ajax.get('/expand/saveMail',{ params: obj })
+}
+
+//下载页
+export const getDownload = (pageSize, pageNo) => {
+	return ajax.get('/expand/getDownLoadFileList',{
+		params: {
+			length: pageSize,
+			pageNo: pageNo
+		}
+	})
+}
+
+//新闻搜索页
+export const getMenuType = () => {
+	return ajax.get('/expand/getModularlList')
+}
+
+export const getSearchNews = (obj) => {
+	return ajax.get('/expand/searchModularInfo',{ params: obj })
+}

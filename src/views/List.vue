@@ -83,6 +83,22 @@
 							if(modelName == 'PR' || modelName == 'pr'){
 								this.listTitle = '政策法规'
 							}
+							
+							if(modelName == 'lzjxx'){
+								this.listTitle = '资金信息'
+							}
+							if(modelName == 'lxxgk'){
+								this.listTitle = '信息公开'
+							}
+							if(modelName == 'lghjh'){
+								this.listTitle = '规划计划'
+							}
+							if(modelName == 'lxzsp'){
+								this.listTitle = '行政审批'
+							}
+							if(modelName == 'lywgz'){
+								this.listTitle = '业务工作'
+							}
 						}
 					}
 				})

@@ -27,10 +27,25 @@ export default new Router({
 				{
 					path: '/detail/:id',
 					name: 'detail',
-					component: () => import(/* webpackChunkName: "list" */ './views/Detail.vue')
+					component: () => import(/* webpackChunkName: "detail" */ './views/Detail.vue')
+				},
+				{
+					path: '/download',
+					name: 'download',
+					component: () => import(/* webpackChunkName: "download" */ './views/Download.vue')
+				},
+				{
+					path: '/searchNews',
+					name: 'searchNews',
+					component: () => import(/* webpackChunkName: "searchNews" */ './views/SearchNews.vue')
 				}
 			]
-    }
+    },
+		{
+			path: '/email',
+			name: 'email',
+			component: () => import(/* webpackChunkName: "email" */ './views/Email.vue')
+		}
   ],
 	scrollBehavior (to, from, savedPosition) {//切换路由的时候滚动到顶部
 		return { x: 0, y: 0 }

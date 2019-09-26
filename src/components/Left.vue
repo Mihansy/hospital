@@ -31,7 +31,7 @@
 				<span class="leftfloat">其他</span>
 			</div>
 			<div class="other-list">
-				<a v-for="(item, index) in otherList" :key="index">{{item.name}}</a>
+				<a v-for="(item, index) in otherList" :key="index" @click="openLink(item.name, item.pageType, item.value)">{{item.name}}</a>
 			</div>
 		</div>
 		<div class="leftblock yy-contact">
@@ -74,6 +74,44 @@
 				}).catch(err => {
 					console.log(err)
 				})
+			},
+			openLink(name, pageType, id) {
+				if(name == '医院信箱' || name == '院长信箱'){
+					this.$router.push({
+						path: '/email'
+					})
+					
+				}else if(name == '下载专区'){
+					this.$router.push({
+						path: '/download'
+					})
+					
+				}else if(name == '新闻搜索'){
+					this.$router.push({
+						path: '/searchNews'
+					})
+					
+				}else if(name == '预约挂号'){
+					window.open('https://web.bshcn.com.cn/jyb-download/index.html') //跳转外部链接，新窗口打开
+					//window.location.href = 'http://www.baidu.com' //跳转外部链接，本窗口打开
+					
+				}else if(pageType == 'list'){
+					this.$router.push({
+						name: 'list',
+						params: {
+							url: '/listPage/getModelInfoPage',
+							modelName: id
+						}
+					})
+					
+				}else if(pageType == 'details'){
+					this.$router.push({
+						name: 'detail',
+						params: {
+							id: id
+						}
+					})
+				}
 			}
 		},
 		mounted() {
