@@ -76,6 +76,8 @@
 				})
 			},
 			openLink(name, pageType, id) {
+				console.log(this.$router)
+				console.log(this.$route)
 				if(name == '医院信箱' || name == '院长信箱'){
 					this.$router.push({
 						path: '/email'
