@@ -1,7 +1,7 @@
 # hospital
 
 ##技术框架
-vue + vue-router + axios + scss + elementUI
+es6 + vue2.x + vue/cli 3.x + vue-router + axios + elementUI+scss
 
 ## Project setup
 ```
