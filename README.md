@@ -1,4 +1,6 @@
 # hospital
+原版：http://www.hkhtcm.com.cn/
+vue版：http://mihansy.gitee.io/vue_hospital/#/home
 
 ## 技术框架
 es6 + vue2.x + vue/cli 3.x + vue-router + axios + elementUI+scss
